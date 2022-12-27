@@ -23,7 +23,7 @@ class ApiClient extends GetConnect implements GetxService {
     token = sharedPreferences.getString("Token")??"";
     _mainHeaders = {
       'Content-type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer $token',
+      'Token': 'Bearer $token',
     };
   }
   Future<ApiResponse> getData(String url,Map<String, String>? headers ) async {

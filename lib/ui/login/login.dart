@@ -5,7 +5,7 @@ import '../../constants/text_style.dart';
 
 import '../../controllers/auth_controller.dart';
 import '../../utils/app_dimensions.dart';
-import '../../widgets/custom_btn.dart';
+import '../widgets/custom_btn.dart';
 import '../shared/shared_component.dart';
 
 class LoginPage extends StatelessWidget {

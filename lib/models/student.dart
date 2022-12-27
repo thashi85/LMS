@@ -1,4 +1,4 @@
-import 'package:lms/models/notices.dart';
+import '../../models/notices.dart';
 
 import '../../models/homework.dart';
 import '../../models/attendance.dart';
@@ -40,7 +40,8 @@ class Student extends User
       :super(userId:null,name: name,email: email,phone: phone,sessionId: sessionId );
 
 Student.fromJson(Map<String, dynamic> json) {
-    studentId = json['id'];
+    
+    studentId = json['id']!=null ? int.parse(json['id'].toString()) : 0;
     studentRef = json['admission_no'];
     firstname = json['firstname'];
     middlename = json['middlename'];
@@ -49,9 +50,9 @@ Student.fromJson(Map<String, dynamic> json) {
     webImage = (json['web_image']??"");
     phone = json['mobile_no'];
     email = json['email'];
-    classId = json['classId'];
+    classId = json['classId']!=null ? int.parse(json['classId'].toString()) : 0; 
     className = json['className'];
-    sectionId = json['sectionId'];
+    sectionId = json['sectionId']!=null ? int.parse(json['sectionId'].toString()) : 0;
     section = json['section'];
   }
 }

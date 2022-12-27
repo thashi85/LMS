@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:lms/controllers/auth_controller.dart';
+import '../../controllers/auth_controller.dart';
 
 class RouteHandler{
   static  final _authController=Get.find<AuthController>();

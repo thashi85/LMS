@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lms/constants/text_style.dart';
-import 'package:lms/controllers/auth_controller.dart';
+import '../../constants/text_style.dart';
+import '../../controllers/auth_controller.dart';
 
 import '../../utils/app_dimensions.dart';
 import '../shared/shared_component.dart';

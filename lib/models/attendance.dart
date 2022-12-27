@@ -1,4 +1,4 @@
-import 'package:lms/constants/enums.dart';
+import '../../constants/enums.dart';
 
 class Attendance{
 

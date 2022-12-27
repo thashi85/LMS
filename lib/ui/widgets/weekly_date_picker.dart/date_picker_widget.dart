@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:lms/utils/date_utility.dart';
+import '../../../utils/date_utility.dart';
 import 'date_widget.dart';
 import 'extra/color.dart';
 import 'extra/style.dart';

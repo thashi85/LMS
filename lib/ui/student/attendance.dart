@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lms/ui/widgets/sliding_datepicker.dart';
-import 'package:lms/ui/widgets/student_slider.dart';
+import '../../ui/widgets/sliding_datepicker.dart';
+import '../../ui/widgets/student_slider.dart';
 
 import '../../controllers/auth_controller.dart';
 import '../../controllers/student_controller.dart';
 import '../../ui/widgets/attendance_list.dart';
 import '../../constants/colors.dart';
 
-import '../../widgets/drawer.dart';
+import '../widgets/drawer.dart';
 import '../../../utils/app_dimensions.dart';
 import '../shared/shared_component.dart';
 
@@ -32,10 +32,7 @@ class AttendancePage extends StatelessWidget {
     var _h = _dimension.getSafeBlockSizeVertical(context);
     //var _w = _dimension.getSafeBlockSizeHorizontal(context);
     
-    return GetBuilder<StudentController>(
-      builder: (controller)
-      {
-        return Scaffold(
+   return Scaffold(
               appBar: AppBar(
                 title: const Text("Attendance"),
               ),
@@ -46,9 +43,15 @@ class AttendancePage extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           StudentSlider(),
-                          SizedBox(height: _h*2),
-                          SlidingDatePicker(),
-                          AttendanceList()
+                          SizedBox(height: _h*2),                         
+                           GetBuilder<StudentController>(
+                              id:"studentAttendance",
+                              builder: (controller) => Column(
+                              children: [
+                                SlidingDatePicker(onDateChange: dateChange),
+                                AttendanceList()
+                              ],
+                            )),
                         ],
                       ),
                     
@@ -62,10 +65,11 @@ class AttendancePage extends StatelessWidget {
                 ),
               drawer:DrawerMenu() ,
             );
-      });
     
   }
-
+  dateChange(){
+    _studentController.refreshData(["studentAttendance"]);
+  }
 
  
 }

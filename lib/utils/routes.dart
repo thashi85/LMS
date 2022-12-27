@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:lms/ui/payment/payment.dart';
-import 'package:lms/ui/student/homework.dart';
-import 'package:lms/ui/student/notices.dart';
+import '../../ui/payment/payment.dart';
+import '../../ui/student/homework.dart';
+import '../../ui/student/notices.dart';
 import '../ui/home/home.dart';
 import '../ui/student/attendance.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lms/constants/colors.dart';
-import 'package:lms/constants/text_style.dart';
-import 'package:lms/utils/app_dimensions.dart';
+import '../../constants/colors.dart';
+import '../../constants/text_style.dart';
+import '../../utils/app_dimensions.dart';
 
-import '../controllers/auth_controller.dart';
-import '../utils/route_handler.dart';
+import '../../controllers/auth_controller.dart';
+import '../../utils/route_handler.dart';
 
 class DrawerMenu extends StatelessWidget {
   DrawerMenu({Key? key}) : super(key: key);

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lms/constants/enums.dart';
-import 'package:lms/controllers/student_controller.dart';
-import 'package:lms/data/repository/user_repo.dart';
-import 'package:lms/ui/shared/shared_component.dart';
-import 'package:lms/utils/app_dimensions.dart';
-import 'package:lms/utils/route_handler.dart';
+import '../../constants/enums.dart';
+import '../../controllers/student_controller.dart';
+import '../../data/repository/user_repo.dart';
+import '../../ui/shared/shared_component.dart';
+import '../../utils/app_dimensions.dart';
+import '../../utils/route_handler.dart';
 import '../models/student.dart';
 import '../models/user.dart';
 

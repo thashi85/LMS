@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:lms/constants/enums.dart';
-import 'package:lms/models/api_response.dart';
+import '../../constants/enums.dart';
+import '../../models/api_response.dart';
 import '../../models/user.dart';
 import '../api/api_client.dart';
 

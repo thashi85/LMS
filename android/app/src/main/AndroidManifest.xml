@@ -5,7 +5,7 @@
    <application
         android:label="lms"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         
         <activity
             android:name=".MainActivity"
@@ -35,11 +35,11 @@
             android:value="2" />
        
     </application>
-     <queries>
+    <!-- <queries>
             <intent>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" />
             </intent>
-        </queries>
+        </queries>-->
 </manifest>

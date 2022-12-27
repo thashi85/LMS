@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:lms/data/repository/common_repo.dart';
-import 'package:lms/models/slider_image.dart';
+import '../../data/repository/common_repo.dart';
+import '../../models/slider_image.dart';
 
 class HomeController extends GetxController {
 

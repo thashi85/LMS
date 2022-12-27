@@ -54,26 +54,26 @@ class Homework {
       this.evaluatedByStaffName});
 
   Homework.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    classId = json['class_id'];
-    sectionId = json['section_id'];
+    id =json['id']!=null ? int.parse(json['id'].toString()) :0;
+    classId = json['class_id']!=null ? int.parse(json['class_id'].toString()) :0; 
+    sectionId = json['section_id']!=null ? int.parse(json['section_id'].toString()) :0; 
     description = json['description'];
     homeworkDate =DateTime.parse(  json['homework_date']);
     submitDate = json['submit_date']!=null ? DateTime.parse(json['submit_date'] ) :null;
-    staffId = json['staff_id'];
+    staffId = json['staff_id']!=null ? int.parse(json['staff_id'].toString()) :0; 
     staffName = json['staff_name'];
-    subjectId = json['subject_id'];
+    subjectId = json['subject_id']!=null ? int.parse(json['subject_id'].toString()) :0;
     subjectName = json['subject_name'];
     subjectCode = json['subject_code'];
     subjectGroup = json['subject_group'];
     evaluationDate = json['evaluation_date']!=null ? DateTime.parse(json['evaluation_date'] ) :null; 
-    evaluatedBy = json['evaluated_by'];
+    evaluatedBy = json['evaluated_by']!=null ? int.parse(json['evaluated_by'].toString()) :null;
     //dAYHHomeworkDate = json['DAY(h.homework_date)'];
     //sessionId = json['session_id'];
     //subjectGroupSubjectId = json['subject_group_subject_id'];
     createDate =DateTime.parse(  json['create_date']);
     document = json['document'];
-    createdBy = json['created_by'];
+    createdBy = json['created_by']!=null ? int.parse(json['created_by'].toString()) :0; 
     //subjectGroupId = json['subject_group_id'];
     evaluatedByStaffName = json['evaluated_by_staff_name'];
     if(evaluationDate!=null){

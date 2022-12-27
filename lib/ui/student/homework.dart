@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:lms/ui/widgets/nodata.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../controllers/student_controller.dart';
@@ -10,7 +11,7 @@ import '../../constants/colors.dart';
 import '../../constants/text_style.dart';
 import '../../controllers/auth_controller.dart';
 import '../../models/student.dart';
-import '../../widgets/drawer.dart';
+import '../widgets/drawer.dart';
 
 import '../../../utils/app_dimensions.dart';
 import '../shared/shared_component.dart';
@@ -47,9 +48,10 @@ class HomeworkPage extends StatelessWidget {
                     StudentSlider(),
                     SizedBox(height: _h * 2),
                     GetBuilder<StudentController>(
+                        id:"studentHomework",
                         builder: (controller) => Column(
                               children: [
-                                SlidingDatePicker(),
+                                SlidingDatePicker(onDateChange: dateChange),
                                 homeworkList(context)
                               ],
                             )),
@@ -64,7 +66,10 @@ class HomeworkPage extends StatelessWidget {
       drawer: DrawerMenu(),
     );
   }
-
+  
+  dateChange(){
+    _studentController.refreshData(["studentHomework"]);
+  }
   Widget homeworkList(BuildContext context) {
     return FutureBuilder(
       future: loadHomeworks(),
@@ -88,7 +93,7 @@ class HomeworkPage extends StatelessWidget {
             // snapshot.data  :- get your object which is pass from your downloadData() function
             return (_authController.loggedInUser == null ||
                     _homeworkList.isEmpty)
-                ? Container(child: _studentHomeworkNotFound(context))
+                ? NoDataWidget(message: "No homework available",)
                 : ListView.builder(
                     padding: EdgeInsets.symmetric(
                         horizontal: AppDimensions.safeBlockMinUnit * 3,
@@ -372,53 +377,5 @@ class HomeworkPage extends StatelessWidget {
     );
   }
 
-  Widget _studentHomeworkNotFound(BuildContext context) {
-    var _w = _dimension.getSafeBlockSizeHorizontal(context);
-    var _subFont = _dimension.getFontSubTitle(context);
-    //var _subNormal = _dimension.getFontNormal(context);
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppDimensions.boarderRadius / 2),
-      ),
-      shadowColor: ColorConstants.lightBackground2Color,
-      elevation: 15,
-      child: ClipPath(
-          clipper: ShapeBorderClipper(
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.circular(AppDimensions.boarderRadius / 2))),
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border(
-                  left: BorderSide(
-                      color: ColorConstants.primaryThemeColor, width: _w * 3)),
-              color: ColorConstants.lightBackground1Color,
-            ),
-            margin: EdgeInsets.only(top: AppDimensions.safeBlockMinUnit * 8),
-            padding: EdgeInsets.all(AppDimensions.safeBlockMinUnit * 5),
-            alignment: Alignment.centerLeft,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    const Icon(Icons.no_backpack_outlined,
-                        color: Colors.blueGrey),
-                    SizedBox(
-                      width: _w * 2,
-                    ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("No homework available",
-                              style: AppTextStyle.secondaryLightBold(
-                                  size: _subFont)),
-                        ]),
-                  ],
-                ),
-              ],
-            ),
-          )),
-    );
-  }
+  
 }

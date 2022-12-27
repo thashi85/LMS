@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:lms/constants/enums.dart';
-import 'package:lms/models/api_response.dart';
-import 'package:lms/models/attendance.dart';
-import 'package:lms/models/homework.dart';
-import 'package:lms/models/notices.dart';
+import '../../constants/enums.dart';
+import '../../models/api_response.dart';
+import '../../models/attendance.dart';
+import '../../models/homework.dart';
+import '../../models/notices.dart';
 import '../api/api_client.dart';
 
 class StudentRepo extends GetxService

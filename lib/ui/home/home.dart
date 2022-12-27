@@ -1,15 +1,14 @@
 import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lms/controllers/home_controller.dart';
+import '../../controllers/home_controller.dart';
 import '../../constants/colors.dart';
 import '../../constants/text_style.dart';
 import '../../ui/widgets/user_info.dart';
 import '../../utils/route_handler.dart';
-import '../../widgets/drawer.dart';
+import '../widgets/drawer.dart';
 
 import '../../utils/app_dimensions.dart';
 import '../shared/shared_component.dart';
@@ -85,7 +84,7 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,          
                 children: [
                     _menuItemContent(context,"Notices",const Icon(Icons.notifications_active_outlined,color: Colors.white,),Colors.orangeAccent,Colors.brown,()=>RouteHandler.redirectToNotices()),
-                    _menuItemContent(context,"Fees",const Icon(Icons.payments_outlined,color: Colors.white),Color.fromARGB(255, 233, 180, 139),Color.fromARGB(255, 97, 10, 11),()=>RouteHandler.redirectToPayment())
+                    _menuItemContent(context,"Payment",const Icon(Icons.payments_outlined,color: Colors.white),Color.fromARGB(255, 233, 180, 139),Color.fromARGB(255, 97, 10, 11),()=>RouteHandler.redirectToPayment())
                 ],
               )
             ],

@@ -5,18 +5,19 @@ import '../../constants/colors.dart';
 import '../../controllers/student_controller.dart';
 import '../../utils/app_dimensions.dart';
 import '../../utils/date_utility.dart';
-import '../../widgets/month_menu.dart';
-import '../../widgets/weekly_date_picker.dart/date_picker_widget.dart';
+import 'month_menu.dart';
+import 'weekly_date_picker.dart/date_picker_widget.dart';
 
 class SlidingDatePicker extends StatelessWidget {
   final bool showDateSelection;
+  final Function? onDateChange;
   final _dimension = Get.find<AppDimensions>();
   final _studentController = Get.find<StudentController>();
  
   List<String> _years=[];
   final _currentYear=DateTime.now().year;
   
-  SlidingDatePicker({ Key? key,this.showDateSelection=true }) : super(key: key){
+  SlidingDatePicker({ Key? key,this.showDateSelection=true,this.onDateChange }) : super(key: key){
     
     for(var i=-5;i<1;i++){
       _years.add((_currentYear+i).toString());
@@ -38,13 +39,15 @@ class SlidingDatePicker extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
               _yearSelectionContent(_w, context),
-              Expanded(child: MonthMenu(width:  _w*73,selectedIndex:_studentController.selectedMonth?? DateTime.now().month-1))
+              Expanded(child: MonthMenu(width:  _w*73,selectedIndex:_studentController.selectedMonth?? DateTime.now().month-1,onDateChange: onDateChange))
               ]),
-            (_studentController.selectedYear==null || _studentController.selectedMonth==null) ? 
-            const CircularProgressIndicator(color: ColorConstants.secondaryThemeColor):
+            
             Visibility(
               visible: showDateSelection==true,
-              child: DatePicker(
+              child: 
+              (_studentController.selectedYear==null || _studentController.selectedMonth==null) ? 
+              const CircularProgressIndicator(color: ColorConstants.secondaryThemeColor):
+              DatePicker(
                 DateUtility.firstDayOfMonth(int.parse(_studentController.selectedYear!), _studentController.selectedMonth!+1),
                 width:(_w*100)/7,
                 height:(_h*10),
@@ -56,8 +59,12 @@ class SlidingDatePicker extends StatelessWidget {
                   // New date selected
                   if(date.day!=_studentController.selectedDate){
                   _studentController.changeSelectedDate(date.day);
-                  }else{
+                  }
+                  else{
                       _studentController.changeSelectedDate(0);
+                  }
+                  if(onDateChange!=null){
+                    onDateChange!();
                   }
                   //print(date.month.toString());
                   //print(date.day.toString());
@@ -95,7 +102,9 @@ class SlidingDatePicker extends StatelessWidget {
                           onChanged: (String? value) {
                             if(value!=null && value!=_studentController.selectedMonth.toString())   {
                               _studentController.changeSelectedYear(value);
-                             
+                              if(onDateChange!=null){
+                                onDateChange!();
+                              }
                             }                       
                                                                                     
                           },

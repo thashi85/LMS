@@ -2,7 +2,7 @@
 //import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lms/models/notices.dart';
+import '../../models/notices.dart';
 import '../../data/repository/student_repo.dart';
 import '../../models/attendance.dart';
 import '../../models/homework.dart';
@@ -16,6 +16,14 @@ class StudentController extends GetxController
   int? selectedMonth;
   int? selectedDate;
   late Student selectedStudent;
+
+  void refreshData(List<Object>? ids){
+    if(ids!=null) {
+      update(ids);
+    }else{
+      update();
+    }
+  }
 
   changeSelectedYear(String val){
       selectedYear=val;  

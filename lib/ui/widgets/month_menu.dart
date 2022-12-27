@@ -1,13 +1,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lms/constants/colors.dart';
-import 'package:lms/controllers/student_controller.dart';
+import '../../constants/colors.dart';
+import '../../controllers/student_controller.dart';
 
-import '../utils/app_dimensions.dart';
+import '../../utils/app_dimensions.dart';
 
 class MonthMenu extends StatelessWidget {
   final double width;
+  final Function? onDateChange;
   int? selectedIndex;
 
   final _dimension = Get.find<AppDimensions>();
@@ -18,7 +19,7 @@ class MonthMenu extends StatelessWidget {
   ];
   // By default our first item will be selected
   
-  MonthMenu({Key? key,required this.width, this.selectedIndex}) : super(key: key){     
+  MonthMenu({Key? key,required this.width, this.selectedIndex,this.onDateChange}) : super(key: key){     
        // selectedIndex=selectedIndex ?? DateTime.now().month-1;
        if(selectedIndex!=null){
         _scrollController=ScrollController(initialScrollOffset:(width/6)*selectedIndex!);
@@ -53,7 +54,9 @@ class MonthMenu extends StatelessWidget {
         selectedIndex = index;
         if(selectedIndex!=null && _studentController.selectedMonth!=selectedIndex){
          _studentController.changeSelectedMonth(selectedIndex!);
-      
+          if(onDateChange!=null){
+                    onDateChange!();
+                  }
         }
       },
       child: SizedBox(

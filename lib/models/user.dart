@@ -26,12 +26,16 @@ late List<Student> students=[];
 Parent();
 
 Parent.fromJson(Map<String, dynamic> json) {
-    userId = json['userId'];
+  if(json['userId']!=null){
+    userId = int.parse(json['userId'].toString());
+  }
     userName = json['userName'];
     name = json['name'];
     email = json['email'];
     phone = json['phone'];
-    sessionId = json['sessionId'];
+    if(json['sessionId']!=null){
+    sessionId =int.parse( json['sessionId'].toString());
+    }
     if (json['students'] != null) {
       students = <Student>[];
       json['students'].forEach((v) {
