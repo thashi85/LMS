@@ -225,7 +225,7 @@ class HomeworkPage extends StatelessWidget {
                       padding: EdgeInsets.only(
                           left: AppDimensions.safeBlockMinUnit * 3),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.max,
                         children: [

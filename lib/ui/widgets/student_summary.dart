@@ -21,7 +21,7 @@ class StudentSummary extends StatelessWidget {
       return GetBuilder<AuthController>(
               builder: ((_authController){   
                       var _student=_authController.selectedStudent();
-                      print(_student!.webImage);
+                      //print(_student!.webImage);
                       return _student==null ? Container() :
                        Container(
                         //height: _h*15,
