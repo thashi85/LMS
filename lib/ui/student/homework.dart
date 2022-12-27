@@ -302,7 +302,7 @@ class HomeworkPage extends StatelessWidget {
                                   ],
                                 ),
                               ],
-                            )
+                            ),
                          if(hwk.evaluationDate != null )
                          Column(
                               children: [
