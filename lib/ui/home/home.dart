@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../controllers/home_controller.dart';
 import '../../constants/colors.dart';
 import '../../constants/text_style.dart';
@@ -78,15 +77,15 @@ class HomePage extends StatelessWidget {
               Row(      
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,          
                 children: [
-                    _menuItemContent(context,"Attendance",const Icon(Icons.access_alarm_sharp,color: Colors.white),Color.fromARGB(255, 43, 150, 114),Color.fromARGB(255, 51, 83, 132),()=> RouteHandler.redirectToAttendance()),
-                    _menuItemContent(context,"Homework",const Icon(Icons.home_work_outlined,color: Colors.white),Color.fromARGB(255, 124, 163, 159),Color.fromARGB(255, 57, 61, 83),()=>RouteHandler.redirectToHomework())
+                    _menuItemContent(context,"Attendance",const Icon(Icons.access_alarm_sharp,color: Colors.white),const Color.fromARGB(255, 43, 150, 114),const Color.fromARGB(255, 51, 83, 132),()=> RouteHandler.redirectToAttendance()),
+                    _menuItemContent(context,"Homework",const Icon(Icons.home_work_outlined,color: Colors.white),const Color.fromARGB(255, 124, 163, 159),const Color.fromARGB(255, 57, 61, 83),()=>RouteHandler.redirectToHomework())
                 ],
               ),
                Row(      
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,          
                 children: [
                     _menuItemContent(context,"Notices",const Icon(Icons.notifications_active_outlined,color: Colors.white,),Colors.orangeAccent,Colors.brown,()=>RouteHandler.redirectToNotices()),
-                    _menuItemContent(context,"Payment",const Icon(Icons.payments_outlined,color: Colors.white),Color.fromARGB(255, 233, 180, 139),Color.fromARGB(255, 97, 10, 11),()=>RouteHandler.redirectToPayment())
+                    _menuItemContent(context,"Payment",const Icon(Icons.payments_outlined,color: Colors.white),const Color.fromARGB(255, 233, 180, 139),const Color.fromARGB(255, 97, 10, 11),()=>RouteHandler.redirectToPayment())
                 ],
               )
             ],
@@ -178,7 +177,7 @@ class HomePage extends StatelessWidget {
     ),
     boxShadow: [
       BoxShadow(
-        color: Color.fromARGB(255, 228, 224, 224).withOpacity(0.5),
+        color: const Color.fromARGB(255, 228, 224, 224).withOpacity(0.5),
         spreadRadius: 5,
         blurRadius: 10,
         offset: const Offset(0, 2), // changes position of shadow

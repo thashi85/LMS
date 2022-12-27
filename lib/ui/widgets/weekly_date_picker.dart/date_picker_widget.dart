@@ -89,7 +89,7 @@ class DatePicker extends StatefulWidget {
             "provide both activated and deactivated dates List at the same time.");
 
   @override
-  State<StatefulWidget> createState() => new _DatePickerState();
+  State<StatefulWidget> createState() =>  _DatePickerState();
 }
 
 class _DatePickerState extends State<DatePicker> {
@@ -149,7 +149,7 @@ class _DatePickerState extends State<DatePicker> {
           // if widget.startDate is null then use the initialDateValue
           DateTime date;
           DateTime _date = widget.startDate.add(Duration(days: index));
-          date = new DateTime(_date.year, _date.month, _date.day);
+          date = DateTime(_date.year, _date.month, _date.day);
 
           bool isDeactivated = false;
 

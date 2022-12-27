@@ -35,13 +35,13 @@ class AttendanceList extends StatelessWidget {
             children: [
               const CircularProgressIndicator(color: ColorConstants.secondaryThemeColor),
               SizedBox(height: _h*10),
-              Text('Please wait its loading...'),
+              const Text('Please wait its loading...'),
             ],
           ));
         } else {
           if (snapshot.hasError) {
             debugPrint('Error: ${snapshot.error}');
-            return Center(child: Text('Error occured'));
+            return const Center(child: Text('Error occured'));
           } else if (snapshot.data != null) {
             var _attendanceList = (snapshot.data as List<Attendance>);
             // snapshot.data  :- get your object which is pass from your downloadData() function

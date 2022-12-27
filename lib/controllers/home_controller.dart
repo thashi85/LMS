@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/repository/common_repo.dart';
 import '../../models/slider_image.dart';
 
