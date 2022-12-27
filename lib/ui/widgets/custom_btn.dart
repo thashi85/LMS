@@ -44,9 +44,9 @@ class CustomButton extends StatelessWidget {
               color: bgColor ?? Colors.black,
             ),
            
-           child: isloading?  Center(
-              child: Container(
-                  child:  CircularProgressIndicator(color: ColorConstants.loaderColor),                 
+           child: isloading?  const Center(
+              child: SizedBox(
+                  child:  CircularProgressIndicator(color: ColorConstants.secondaryThemeColor),                 
                   height: 40,
                   width: 40,
                 ))

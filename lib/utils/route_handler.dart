@@ -3,8 +3,10 @@ import '../../controllers/auth_controller.dart';
 
 class RouteHandler{
   static  final _authController=Get.find<AuthController>();
-  static redirectToLogin(){
+  static redirectToLogin(){   
+     // Get.offAllNamed("/login") ;
       Get.toNamed("/login");
+     
   }
   static redirectToHome(){
       authenticateRedirect("/home");
@@ -23,7 +25,8 @@ class RouteHandler{
   }
   static authenticateRedirect(String path){
     if(_authController.loggedInUser==null){
-       Get.toNamed("/login");
+      _authController.signOut();
+       //Get.toNamed("/login");
     }
     else {
       Get.toNamed(path);

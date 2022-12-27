@@ -42,7 +42,7 @@ class AttendancePage extends StatelessWidget {
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          StudentSlider(),
+                          StudentSlider(onStudentChange: dateChange),
                           SizedBox(height: _h*2),                         
                            GetBuilder<StudentController>(
                               id:"studentAttendance",

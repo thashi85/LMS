@@ -45,7 +45,7 @@ class NoticePage extends StatelessWidget {
                   color: ColorConstants.secondaryThemeColor)
               : Column(
                   children: [
-                    StudentSlider(),
+                    StudentSlider(onStudentChange: dateChange),
                     SizedBox(height: _h * 2),
                     GetBuilder<StudentController>(
                         id:"studenNotices",
@@ -68,17 +68,22 @@ class NoticePage extends StatelessWidget {
   }
 
   Widget noticeList(BuildContext context) {
+  
+  var _h = _dimension.getSafeBlockSizeVertical(context);
     return FutureBuilder(
       future: loadNotices(),
       builder: (context, snapshot) {
+        
         if (snapshot.connectionState == ConnectionState.waiting) {
+
           return Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
-            children: const [
-              CircularProgressIndicator(color: ColorConstants.loaderColor),
-              Text('Please wait its loading...'),
+            children:  [
+              const CircularProgressIndicator(color: ColorConstants.secondaryThemeColor),
+              SizedBox(height: _h*10),
+              const Text('Please wait its loading...'),
             ],
           ));
         } else {
@@ -184,6 +189,7 @@ class NoticePage extends StatelessWidget {
                           width: _w * 2,
                         ),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(DateFormat('yyyy MMM dd').format(notice.noticeDate),
                                 style: AppTextStyle.primaryDarkRegular(size: _subNormal*0.75)),

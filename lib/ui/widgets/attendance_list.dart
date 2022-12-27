@@ -23,6 +23,7 @@ class AttendanceList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _dimension.init(context);
+    var _h = _dimension.getSafeBlockSizeVertical(context);
     return FutureBuilder(
       future: loadAttendanceData(),
       builder: (context, snapshot) {
@@ -32,7 +33,8 @@ class AttendanceList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              CircularProgressIndicator(color: ColorConstants.loaderColor),
+              const CircularProgressIndicator(color: ColorConstants.secondaryThemeColor),
+              SizedBox(height: _h*10),
               Text('Please wait its loading...'),
             ],
           ));

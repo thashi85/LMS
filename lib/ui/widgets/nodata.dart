@@ -38,7 +38,7 @@ class NoDataWidget extends StatelessWidget {
                       color: ColorConstants.primaryThemeColor, width: _w * 3)),
               color: ColorConstants.lightBackground1Color,
             ),
-            margin: EdgeInsets.only(top: AppDimensions.safeBlockMinUnit * 8),
+            margin: EdgeInsets.only(top: AppDimensions.safeBlockMinUnit * 15),
             padding: EdgeInsets.all(AppDimensions.safeBlockMinUnit * 5),
             alignment: Alignment.centerLeft,
             child: Row(

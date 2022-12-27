@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/repository/common_repo.dart';
 import '../../models/slider_image.dart';
 
@@ -6,6 +7,8 @@ class HomeController extends GetxController {
 
   final CommonRepo _commonRepo=Get.find<CommonRepo>();  
   List<SliderImage> sliderImages=[];
+  
+
   HomeController():super();
 
  Future<List<SliderImage>> getSliderImages() async

@@ -201,6 +201,7 @@ class PaymentPage extends StatelessWidget {
     }
   }
   Widget _studentPaymentSection(BuildContext context){
+    var _h = _dimension.getSafeBlockSizeVertical(context);
       return    FutureBuilder(
                     future: loadPayments(),
                     builder: (context, snapshot){
@@ -210,9 +211,10 @@ class PaymentPage extends StatelessWidget {
                                 child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.max,
-                              children: const [
-                                CircularProgressIndicator(color: ColorConstants.loaderColor),
-                                Text('Please wait its loading...'),
+                              children: [
+                                const CircularProgressIndicator(color: ColorConstants.secondaryThemeColor),
+                                SizedBox(height: _h*10),
+                                const Text('Please wait its loading...'),
                               ],
                             ));
                         } else 

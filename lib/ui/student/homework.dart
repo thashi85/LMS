@@ -45,7 +45,7 @@ class HomeworkPage extends StatelessWidget {
                   color: ColorConstants.secondaryThemeColor)
               : Column(
                   children: [
-                    StudentSlider(),
+                    StudentSlider(onStudentChange: dateChange),
                     SizedBox(height: _h * 2),
                     GetBuilder<StudentController>(
                         id:"studentHomework",
@@ -71,6 +71,7 @@ class HomeworkPage extends StatelessWidget {
     _studentController.refreshData(["studentHomework"]);
   }
   Widget homeworkList(BuildContext context) {
+    var _h = _dimension.getSafeBlockSizeVertical(context);
     return FutureBuilder(
       future: loadHomeworks(),
       builder: (context, snapshot) {
@@ -79,9 +80,10 @@ class HomeworkPage extends StatelessWidget {
               child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
-            children: const [
-              CircularProgressIndicator(color: ColorConstants.loaderColor),
-              Text('Please wait its loading...'),
+            children:  [
+              const CircularProgressIndicator(color: ColorConstants.secondaryThemeColor),
+              SizedBox(height: _h*10),
+              const Text('Please wait its loading...'),
             ],
           ));
         } else {
@@ -278,9 +280,9 @@ class HomeworkPage extends StatelessWidget {
                                       size: _subNormal * 0.8)),
                             ],
                           ),
-                          Visibility(
-                            visible: hwk.submitDate != null,
-                            child: Column(
+                         
+                          if(hwk.submitDate != null)
+                          Column(
                               children: [
                                 SizedBox(height: _h),
                                 Row(
@@ -300,11 +302,9 @@ class HomeworkPage extends StatelessWidget {
                                   ],
                                 ),
                               ],
-                            ),
-                          ),
-                          Visibility(
-                            visible: hwk.evaluationDate != null,
-                            child: Column(
+                            )
+                         if(hwk.evaluationDate != null )
+                         Column(
                               children: [
                                 SizedBox(height: _h),
                                 Row(
@@ -336,8 +336,7 @@ class HomeworkPage extends StatelessWidget {
                                   ],
                                 ),
                               ],
-                            ),
-                          )
+                            )
                         ],
                       ),
                     ),

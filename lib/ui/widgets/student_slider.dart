@@ -8,13 +8,21 @@ import '../widgets/student_summary.dart';
 
 
 class StudentSlider extends StatelessWidget {
+  final Function? onStudentChange;
   final _dimension = Get.find<AppDimensions>();
   final _authController = Get.find<AuthController>();
-  final _pageController=PageController(viewportFraction: 1, initialPage:1);
+  final _pageController=PageController(viewportFraction: 1, initialPage:0);
 
-  StudentSlider({ Key? key }) : super(key: key){
+  StudentSlider({ Key? key,this.onStudentChange }) : super(key: key){
      _pageController.addListener(() {
-      Get.find<AuthController>().setSelectedStudent((_pageController.page??0.0).round());
+      var _selectedIndex=(_pageController.page??0.0).round();
+      if(_selectedIndex!=_authController.studentIndex){
+        _authController.setSelectedStudent(_selectedIndex);
+        if(onStudentChange!=null){
+          onStudentChange!();
+        }
+      }
+     
     });
   }
 

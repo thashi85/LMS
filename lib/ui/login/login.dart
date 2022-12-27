@@ -28,6 +28,7 @@ class LoginPage extends StatelessWidget {
       key: _scaffoldKey,
       appBar: AppBar(
         title: const Text("Login"),
+        automaticallyImplyLeading: false,
       ),
       body: SharedComponentUI. mainLogoLayoutUI(context, _dimension,  
       Container(

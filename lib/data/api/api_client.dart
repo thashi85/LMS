@@ -15,21 +15,26 @@ class ApiClient extends GetConnect implements GetxService {
   final int timeoutD;
   final SharedPreferences sharedPreferences;
   late String token;
-  late Map<String, String> _mainHeaders;
+ // late Map<String, String> _mainHeaders;
 
   ApiClient({required this.appBaseUrl,required this.timeoutD,required this.sharedPreferences}) {
     baseUrl = appBaseUrl;
     timeout = Duration(seconds: timeoutD);
+    
+   
+  }
+  getHeaders(){
     token = sharedPreferences.getString("Token")??"";
-    _mainHeaders = {
-      'Content-type': 'application/json; charset=UTF-8',
-      'Token': 'Bearer $token',
-    };
+    return  {
+          'Content-type': 'application/json; charset=UTF-8',
+          'Token': 'Bearer $token',
+          'Authorization': 'Bearer $token',
+        };
   }
   Future<ApiResponse> getData(String url,Map<String, String>? headers ) async {
     try {
       
-      Response data = await  get(url,headers: headers??_mainHeaders);
+      Response data = await  get(url,headers: headers??getHeaders());
       return processResponse(data);
     } catch (e) {
        return errorResponseReturn(e);
@@ -39,7 +44,7 @@ class ApiClient extends GetConnect implements GetxService {
   
   Future<ApiResponse> postData(String url, Object obj,Map<String, String>? headers) async {
     try {
-      Response data = await post(url, obj,headers: headers??_mainHeaders);
+      Response data = await post(url, obj,headers: headers??getHeaders());
       return processResponse(data);
     } catch (e) {
       return errorResponseReturn(e);

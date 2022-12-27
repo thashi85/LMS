@@ -67,6 +67,9 @@ class Homework {
     subjectCode = json['subject_code'];
     subjectGroup = json['subject_group'];
     evaluationDate = json['evaluation_date']!=null ? DateTime.parse(json['evaluation_date'] ) :null; 
+    if(evaluationDate!=null && evaluationDate!.year<=1){
+      evaluationDate=null;
+    }
     evaluatedBy = json['evaluated_by']!=null ? int.parse(json['evaluated_by'].toString()) :null;
     //dAYHHomeworkDate = json['DAY(h.homework_date)'];
     //sessionId = json['session_id'];

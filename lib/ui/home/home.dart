@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../controllers/home_controller.dart';
 import '../../constants/colors.dart';
 import '../../constants/text_style.dart';
@@ -52,6 +53,7 @@ class HomePage extends StatelessWidget {
       body: SharedComponentUI. calenderTopLayoutUI(context, _dimension, Column(
         children: [
           UserInfo(),
+         // Text("Token: "+(_homeController.sharedPreferences.getString("Token")??"")),
           _imageSlider(context),
            SizedBox(height: _h*3,),
           _menuContent(context)
