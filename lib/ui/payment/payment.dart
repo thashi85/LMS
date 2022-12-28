@@ -226,7 +226,7 @@ class PaymentPage extends StatelessWidget {
                             } else if (snapshot.data != null) 
                             {
                                   var _paymentSummary = (snapshot.data as PaymentSummary);
-                                  if(_paymentSummary!=null && _paymentSummary.payments==null)
+                                  if(_paymentSummary!=null && _paymentSummary.payments.isEmpty==null)
                                   {
                                     _paymentSummary.payments=[];
                                   }

@@ -53,8 +53,8 @@ class StudentSummary extends StatelessWidget {
                                     ),
                                   )
                                   :
-                                  CircleAvatar(backgroundColor: ColorConstants.whiteBackgroundColor,                
-                                    backgroundImage: const AssetImage('assets/images/student-icon.png'),
+                                  const CircleAvatar(backgroundColor: ColorConstants.whiteBackgroundColor,                
+                                    backgroundImage: AssetImage('assets/images/student-icon.png'),
                                     radius: 220,),
                                 ),
                                 Expanded(

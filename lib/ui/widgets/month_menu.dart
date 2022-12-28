@@ -14,7 +14,7 @@ class MonthMenu extends StatelessWidget {
   final _dimension = Get.find<AppDimensions>();
   final _studentController = Get.find<StudentController>();
   ScrollController _scrollController=ScrollController();
-  List<String> categories = [
+  final List<String> categories = [
     "JAN", "FEB", "MAR","APR", "MAY", "JUN",  "JUL",  "AUG","SEP", "OCT", "NOV","DEC"
   ];
   // By default our first item will be selected
