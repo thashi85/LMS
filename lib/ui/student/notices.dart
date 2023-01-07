@@ -179,6 +179,7 @@ class NoticePage extends StatelessWidget {
                         Text(notice.title,style: AppTextStyle.secondaryLightBold( size: _subNormal))                   
                       ],
                     ),
+                    if(notice.noticeDate!=null)
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -191,9 +192,9 @@ class NoticePage extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(DateFormat('yyyy MMM dd').format(notice.noticeDate),
+                            Text(DateFormat('yyyy MMM dd').format(notice.noticeDate!),
                                 style: AppTextStyle.primaryDarkRegular(size: _subNormal*0.75)),
-                            Text(DateFormat('hh:mm a').format(notice.noticeDate),
+                            Text(DateFormat('hh:mm a').format(notice.noticeDate!),
                                 style: AppTextStyle.primaryDarkRegular(size: _subNormal*0.75)),
                           ],
                         ),

@@ -120,7 +120,7 @@ class StudentController extends GetxController
       student.notices.addAll(_apiData.data);
        _res=_apiData.data;
       if(day>0){
-        _res=_res.where((a) => a.noticeDate.day==day).toList();   
+        _res=_res.where((a) =>a.noticeDate!=null && a.noticeDate!.day==day).toList();   
       }
     }    
     return _res;

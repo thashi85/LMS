@@ -24,11 +24,13 @@ class PaymentController extends GetxController {
       var _apiData=await _paymentRepo.getPayments(parentId,student.studentId!,sessionId,year,month,day:day);
       if(_apiData !=null && _apiData.data != null)
       { 
-        paymentSummary=_apiData.data;
-         return _apiData.data;   //update(["paymentHistory"]);
-      }      
-   
-      return null;
+        paymentSummary=_apiData.data;        
+         
+      } else{
+        paymentSummary=null;
+      }     
+      update(["paymentDueAmount","paymentDueDate"]);
+      return paymentSummary;
   }
 
 }

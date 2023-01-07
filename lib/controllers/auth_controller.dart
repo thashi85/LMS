@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lms/controllers/notification_controller.dart';
 import '../../constants/enums.dart';
 import '../../controllers/student_controller.dart';
 import '../../data/repository/user_repo.dart';
@@ -12,7 +13,7 @@ import '../models/user.dart';
 class AuthController extends GetxController {
 
   final UserRepo _userRepo=Get.find<UserRepo>();
- 
+  final _notificationController = Get.find<NotificationController>();
   //RxBool isLoggedIn = false.obs;
   String loginOption = "1"; //1:parent 2:Student 3:teachers
   bool isLoading=false;
@@ -61,6 +62,12 @@ class AuthController extends GetxController {
             studentIndex = 0;
            
           }
+           if(_notificationController.deviceToken.isNotEmpty){
+            _notificationController.getToken(loggedInUser!);
+          }else{
+            _notificationController.registerNotification(loggedInUser!);
+          }
+          
           /// ScaffoldMessenger.of(context).showSnackBar(
           //  SharedComponentUI.getSnackBarComponent(context,Get.find<AppDimensions>(), MessageType.success, "Login Success"));
          // Get.snackbar("Login Success", "");

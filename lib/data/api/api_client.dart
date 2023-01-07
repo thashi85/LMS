@@ -54,7 +54,11 @@ class ApiClient extends GetConnect implements GetxService {
   ApiResponse processResponse(Response response){
       var code = response.statusCode;
       
-      var jsonDBody = jsonDecode(response.bodyString??"");
+      Map<String, dynamic>? jsonDBody;
+      if(response.bodyString!=null){
+        var _str=(response.bodyString??"").replaceAll("\\n", "").replaceAll("\\r", "").replaceAll("\\t", "");
+        jsonDBody =jsonDecode(_str);
+      }
 
     if (code == 200 || code == 201) {
       return ApiResponse( status: ResponseStatus.success, response: jsonDBody, responseCode: code);

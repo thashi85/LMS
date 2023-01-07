@@ -28,4 +28,19 @@ class UserRepo extends GetxService
   logout(){
      apiClient.sharedPreferences.setString("Token", "");
   }
+   Future<ApiResponse?> addDevice(String userId,String deviceRef) async {
+    var _user={
+      "user_id":userId,
+      "device_ref":deviceRef
+    };
+   
+      var _res =await apiClient.postData("api/user/device.php",_user,null); 
+      if(_res.status==ResponseStatus.success) { 
+       // _res.data=Parent.fromJson(_res.response["data"]);
+       
+      }
+      return _res;
+   
+  }
+
 }

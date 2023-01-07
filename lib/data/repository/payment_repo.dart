@@ -17,9 +17,7 @@ class PaymentRepo extends GetxService
       if(_res.status==ResponseStatus.success) { 
         if (_res.response["data"] != null) {
           var _summary=PaymentSummary.fromJson(_res.response["data"]); 
-          if(month!=12){
-            _summary.payments=[];
-          }
+        
           _res.data =   _summary;
         }
         

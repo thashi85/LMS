@@ -6,9 +6,29 @@ class HomeController extends GetxController {
 
   final CommonRepo _commonRepo=Get.find<CommonRepo>();  
   List<SliderImage> sliderImages=[];
-  
+ 
+  String messageTitle = "Empty";
+  String notificationAlert = "alert";
 
-  HomeController():super();
+  HomeController():super(){
+  /* _firebaseMessaging = FirebaseMessaging.instance;
+    _firebaseMessaging.configure(
+      onMessage: (message) async{
+        setState(() {
+          messageTitle = message["notification"]["title"];
+          notificationAlert = "New Notification Alert";
+        });
+
+      },
+      onResume: (message) async{
+        setState(() {
+          messageTitle = message["data"]["title"];
+          notificationAlert = "Application opened from Notification";
+        });
+
+      },
+    );*/
+  }
 
  Future<List<SliderImage>> getSliderImages() async
   {     

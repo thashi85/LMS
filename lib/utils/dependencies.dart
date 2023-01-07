@@ -1,4 +1,5 @@
 import 'package:get/instance_manager.dart';
+import 'package:lms/controllers/notification_controller.dart';
 import 'package:lms/data/repository/payment_repo.dart';
 import '../../controllers/home_controller.dart';
 import '../../controllers/student_controller.dart';
@@ -37,6 +38,8 @@ Future<void> init() async {
   Get.lazyPut(()=>StudentController());
   Get.lazyPut(()=>HomeController());
   Get.lazyPut(() => PaymentController());
+  Get.lazyPut(() => NotificationController());
+
   //Services
   // Get.lazyPut(() => ThemeService());
 

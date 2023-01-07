@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "192594157536",
+    "project_id": "sjp-lms",
+    "storage_bucket": "sjp-lms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192594157536:android:c2fea73ee3882fd99a5585",
+        "android_client_info": {
+          "package_name": "com.example.lms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192594157536-m5pfld67l1mumu6h883mof3qqmohg8t2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO3OadDtqYjo_19cSh00QieqUdHzZYlWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "192594157536-m5pfld67l1mumu6h883mof3qqmohg8t2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

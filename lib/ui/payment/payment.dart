@@ -48,10 +48,8 @@ class PaymentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     
     _dimension.init(context);
-    var _h = _dimension.getSafeBlockSizeVertical(context);
-    var _w = _dimension.getSafeBlockSizeHorizontal(context);
-    var _subFont = _dimension.getFontSubTitle(context);
-    //var _titleFont = _dimension.getFontTitle(context);
+     var _subFont = _dimension.getFontSubTitle(context);
+  
     return Scaffold(
       appBar: AppBar(
         title: const Text("Payments"),
@@ -61,58 +59,9 @@ class PaymentPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                  mainAxisAlignment: MainAxisAlignment.start,
                  crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [                  
-                   Container(
-                     height:_h*35 ,
-                     color: ColorConstants.secondaryThemeColor,
-                     child: Stack(                     
-                        children: [
-                           UserInfo(),
-                           Positioned(
-                             left:_w*5,
-                             right: _w*5,
-                             top:_h*12,
-                             child: Container(
-                              height: _h*20,
-                              decoration: BoxDecoration(
-                                color: ColorConstants.whiteBackgroundColor,
-                                borderRadius: BorderRadius.circular(AppDimensions.boarderRadius)
-                              ),
-                              child:  Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      child: Container(   
-                                        margin: EdgeInsets.all(AppDimensions.safeBlockMinUnit*5),                                    
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10), 
-                                          // color: ColorConstants.whiteBackgroundColor,                                        
-                                        ),
-                                        child: _dueAmountContent(context),
-                                      ),
-                                    ),
-                                    const VerticalDivider(
-                                      width: 20,
-                                      thickness: 2,
-                                      indent: 10,
-                                      endIndent: 10,
-                                      color: ColorConstants.lightAshBackgroundColor,
-                                    ),
-                                    Expanded(
-                                      child: Container(
-                                         margin: EdgeInsets.all(AppDimensions.safeBlockMinUnit*5),    
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                         //color: ColorConstants.whiteBackgroundColor,
-                                        ),
-                                        child:  _dueDateContent(context),
-                                      ),
-                                    ),
-                                  ]),
-                             ),
-                           )
-                        ],
-                     ),
-                   ),
+                 children: [           
+                   _paymentSummaryHeader(context),       
+                  
                     GetBuilder<StudentController>(
                               builder: (controller) => SlidingDatePicker(showDateSelection: false,onDateChange: dateChange)),                 
 
@@ -141,6 +90,62 @@ class PaymentPage extends StatelessWidget {
     );
   }
 
+  Container _paymentSummaryHeader( BuildContext context) {
+     var _h = _dimension.getSafeBlockSizeVertical(context);
+    var _w = _dimension.getSafeBlockSizeHorizontal(context);
+    return Container(
+                   height:_h*35 ,
+                   color: ColorConstants.secondaryThemeColor,
+                   child: Stack(                     
+                      children: [
+                         UserInfo(),
+                         Positioned(
+                           left:_w*5,
+                           right: _w*5,
+                           top:_h*12,
+                           child: Container(
+                            height: _h*20,
+                            decoration: BoxDecoration(
+                              color: ColorConstants.whiteBackgroundColor,
+                              borderRadius: BorderRadius.circular(AppDimensions.boarderRadius)
+                            ),
+                            child:  Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Container(   
+                                      margin: EdgeInsets.all(AppDimensions.safeBlockMinUnit*5),                                    
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10), 
+                                        // color: ColorConstants.whiteBackgroundColor,                                        
+                                      ),
+                                      child: _dueAmountContent(context),
+                                    ),
+                                  ),
+                                  const VerticalDivider(
+                                    width: 20,
+                                    thickness: 2,
+                                    indent: 10,
+                                    endIndent: 10,
+                                    color: ColorConstants.lightAshBackgroundColor,
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                       margin: EdgeInsets.all(AppDimensions.safeBlockMinUnit*5),    
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                       //color: ColorConstants.whiteBackgroundColor,
+                                      ),
+                                      child:  _dueDateContent(context),
+                                    ),
+                                  ),
+                                ]),
+                           ),
+                         )
+                      ],
+                   ),
+                 );
+  }
+
   Widget _dueDateContent(BuildContext context) {
     var _subFont = _dimension.getFontSubTitle(context);
     var _titleFont = _dimension.getFontTitle(context);
@@ -151,11 +156,11 @@ class PaymentPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [                                            
                         Text("Due Date", style:  AppTextStyle.secondaryLightBold(size: _subFont,color: ColorConstants.secondaryLightTextColor)),
-                                          
+                                      
                         Column(
                             children: [
-                              Text((_paymentController.paymentSummary==null)   ?"" :  DateFormat("MMM dd").format( _paymentController.paymentSummary!.dueDate), style:  AppTextStyle.secondaryLightBold(size: _titleFont,color: ColorConstants.primaryThemeColor)),   
-                              Text((_paymentController.paymentSummary==null)   ?"" :DateFormat("yyyy").format( _paymentController.paymentSummary!.dueDate), style:  AppTextStyle.secondaryLightBold(size: _subFont,color: ColorConstants.secondaryLightTextColor)),    
+                              Text((_paymentController.paymentSummary==null ||_paymentController.paymentSummary!.dueDate==null)   ?"" :  DateFormat("MMM dd").format( _paymentController.paymentSummary!.dueDate!), style:  AppTextStyle.secondaryLightBold(size: _titleFont,color: ColorConstants.primaryThemeColor)),   
+                              Text((_paymentController.paymentSummary==null||_paymentController.paymentSummary!.dueDate==null)   ?"" :DateFormat("yyyy").format( _paymentController.paymentSummary!.dueDate!), style:  AppTextStyle.secondaryLightBold(size: _subFont,color: ColorConstants.secondaryLightTextColor)),    
                             ],
                           )
                        
@@ -183,7 +188,7 @@ class PaymentPage extends StatelessWidget {
   }
 
   dateChange(){
-    _paymentController.refreshData(["paymentHistory","paymentDueAmount","paymentDueDate"]);
+    _paymentController.refreshData(["paymentHistory"]);//"paymentDueAmount","paymentDueDate"
   }
   Future<PaymentSummary?> loadPayments() async {
     PaymentSummary? _paymentSummary;
@@ -287,17 +292,17 @@ class PaymentPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                        children: [
-                        
+                        if(pym.paidDate!=null)
                          Row(
                           children: [
                             const Icon(Icons.calendar_month,color: Colors.blueGrey),
                             SizedBox(width: _w*2,),
-                             Text(DateFormat('yyyy-MMM-dd hh:mm a').format(DateTime.now()),
+                             Text(DateFormat('yyyy-MMM-dd hh:mm a').format(pym.paidDate!),
                               style:  AppTextStyle.primaryDarkRegular(size: _subNormal)),
                           ],
                          
                          ),
-                          Text("Rs. 10,000",
+                          Text(pym.paidAmount.toStringAsFixed(2),
                          style:  AppTextStyle.secondaryLightBold(size: _subFont)),
                        ],                        
                       )),

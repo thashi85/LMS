@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 import '../../controllers/home_controller.dart';
 import '../../constants/colors.dart';
 import '../../constants/text_style.dart';
@@ -16,16 +18,20 @@ import '../shared/shared_component.dart';
 class HomePage extends StatelessWidget {
   final _dimension = Get.find<AppDimensions>();
   final _homeController = Get.find<HomeController>();
+  
   final _pageController=PageController();
   int selectedPage=0;
 
 
   HomePage({ Key? key }) : super(key: key){
     _homeController.getSliderImages();
+   
     Timer.periodic(const Duration(seconds: 3), (timer) { 
           if(selectedPage==_homeController.sliderImages.length){
             selectedPage=0;
-            _pageController.jumpTo(0);
+            if(_pageController.hasClients){
+              _pageController.jumpTo(0);
+            }
           }else{
             selectedPage++;
             _pageController.animateToPage(selectedPage,duration: const Duration(seconds: 1), curve: Curves.decelerate);
@@ -36,9 +42,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+     
     
     _dimension.init(context);
    var _h = _dimension.getSafeBlockSizeVertical(context);
+   
     return Scaffold(
       appBar: AppBar(
         title: AnimatedTextKit(
@@ -52,6 +61,55 @@ class HomePage extends StatelessWidget {
       body: SharedComponentUI. calenderTopLayoutUI(context, _dimension, Column(
         children: [
           UserInfo(),
+        /*  GetBuilder<NotificationController>(builder: ((controller) => Container(
+            color: Colors.amber[50],
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    await Clipboard.setData(ClipboardData(text: controller.deviceToken));
+                    // copied successfully
+                  },
+                  child: Text("Device Token: "+(controller.deviceToken))),
+
+                GestureDetector(
+                  onTap: (() => 
+                  showSimpleNotification( Text(DateFormat('hh:mm: a on yyyy MMM dd').format(DateTime.now()),
+                              style: AppTextStyle.primaryLightMedium( size: 14)),
+                      leading: Container(
+                                width: 40.0,
+                                height: 40.0,
+                                decoration:  const BoxDecoration(
+                                  color: ColorConstants.primaryThemeColor,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Icon(Icons.calendar_month_outlined,  color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                      trailing: Builder(builder: (context) {
+                      return FlatButton(
+                          textColor: ColorConstants.primaryThemeColor,
+                          onPressed: () {
+                            if(OverlaySupportEntry.of(context)!=null){
+                            OverlaySupportEntry.of(context)!.dismiss();
+                            }
+                          },
+                          child: Text('Dismiss'));
+                    }),
+                      subtitle: const Text("TIME IN"),
+                      background: ColorConstants.secondaryThemeColor,
+                      duration: const Duration(seconds: 2),
+                    )
+                  ),
+                  child: Text("Title: "+(controller.messageTitle))),
+                Text("Data: "+(controller.messageBody)),
+              ],
+            ),
+          ))),*/
          // Text("Token: "+(_homeController.sharedPreferences.getString("Token")??"")),
           _imageSlider(context),
            SizedBox(height: _h*3,),

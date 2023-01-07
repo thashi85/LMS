@@ -9,12 +9,15 @@ import '../widgets/custom_btn.dart';
 import '../shared/shared_component.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({ Key? key }) : super(key: key);
-  final _dimension = Get.find<AppDimensions>();
+   final _dimension = Get.find<AppDimensions>();
  // final _authController = Get.find<AuthController>();
   final List<dynamic> _options=[{"id":"1","name":"Parent"},{"id":"2","name":"Student"},{"id":"3","name":"Teacher"}];
   final _formKey=GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  LoginPage({ Key? key }) : super(key: key);
+ 
+  
 
   @override
   Widget build(BuildContext context) {

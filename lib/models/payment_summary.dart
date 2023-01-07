@@ -1,18 +1,25 @@
 class PaymentSummary {
-  late double dueAmount;
-  late DateTime dueDate;
+  double dueAmount=0.0;
+  double paidAmount=0.0;
+  DateTime? dueDate;
   List<Payment> payments=[];
 
   PaymentSummary({required this.dueAmount,required this.dueDate});
 
   PaymentSummary.fromJson(Map<String, dynamic> json) {
-    if(json['dueAmount']!=null){
-      dueAmount = json['dueAmount'] * 1.0;
+    if(json['due_amount']!=null){
+      dueAmount = double.parse(json['due_amount'].toString())  * 1.0;
     }
-    dueDate = DateTime.parse(json['dueDate']);
-    if (json['transaction'] != null) {
+    if(json['due_date']!=null){
+      dueDate = DateTime.parse(json['due_date']);
+    }
+    if(json['paid_amount']!=null){
+      paidAmount = double.parse(json['paid_amount'].toString())  * 1.0;
+    }
+      
+    if (json['transactions'] != null) {
       payments = <Payment>[];
-      json['transaction'].forEach((v) {
+      json['transactions'].forEach((v) {
         payments.add(Payment.fromJson(v));
       });
     }
@@ -22,14 +29,23 @@ class PaymentSummary {
 }
 
 class Payment {
-  late double paidAmount;
-  late DateTime paidDate;
-
+  double paidAmount=0.0;
+  DateTime? paidDate;
+  int paymentMethod=1;
   Payment({required this.paidAmount,required this.paidDate});
 
   Payment.fromJson(Map<String, dynamic> json) {
-    paidAmount = double.parse((json['paidAmount']??0.0).toString());
-    paidDate = DateTime.parse( json['paidDate']);
+     if(json['paid_amount']!=null){
+      paidAmount = double.parse(json['paid_amount'].toString())  * 1.0;
+    }else{
+      paidAmount=0.0;
+    }
+     if(json['paid_date']!=null){
+      paidDate = DateTime.parse(json['paid_date'].toString());
+    }
+     if(json['payment_method']!=null){
+      paymentMethod = int.parse(json['payment_method'].toString());
+    }
   }
 
   
