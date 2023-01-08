@@ -78,9 +78,9 @@ class AppDimensions extends GetxController {
       case DeviceSize.small:
         return 16;
       case DeviceSize.medium:
-        return 24;
+        return 18;
       default:
-        return 28;
+        return 24;
     }
   }
 

@@ -26,7 +26,7 @@ class UserInfo extends StatelessWidget {
     var _subNormal = _dimension.getFontNormal(context);
       return  _authController.loggedInUser==null ? Container():
                       Container(
-                        height: _h*15,
+                        //height: _h*15,
                         color: ColorConstants.primaryThemeColor,
                         child: Row(
                           children: [                           

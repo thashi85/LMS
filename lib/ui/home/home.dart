@@ -46,7 +46,7 @@ class HomePage extends StatelessWidget {
      
     
     _dimension.init(context);
-   var _h = _dimension.getSafeBlockSizeVertical(context);
+  
    
     return Scaffold(
       appBar: AppBar(
@@ -59,61 +59,9 @@ class HomePage extends StatelessWidget {
     ),
       ),
       body: SharedComponentUI. calenderTopLayoutUI(context, _dimension, Column(
-        children: [
-          UserInfo(),
-        /*  GetBuilder<NotificationController>(builder: ((controller) => Container(
-            color: Colors.amber[50],
-            child: Column(
-              children: [
-                GestureDetector(
-                  onTap: () async {
-                    await Clipboard.setData(ClipboardData(text: controller.deviceToken));
-                    // copied successfully
-                  },
-                  child: Text("Device Token: "+(controller.deviceToken))),
-
-                GestureDetector(
-                  onTap: (() => 
-                  showSimpleNotification( Text(DateFormat('hh:mm: a on yyyy MMM dd').format(DateTime.now()),
-                              style: AppTextStyle.primaryLightMedium( size: 14)),
-                      leading: Container(
-                                width: 40.0,
-                                height: 40.0,
-                                decoration:  const BoxDecoration(
-                                  color: ColorConstants.primaryThemeColor,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Icon(Icons.calendar_month_outlined,  color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                      trailing: Builder(builder: (context) {
-                      return FlatButton(
-                          textColor: ColorConstants.primaryThemeColor,
-                          onPressed: () {
-                            if(OverlaySupportEntry.of(context)!=null){
-                            OverlaySupportEntry.of(context)!.dismiss();
-                            }
-                          },
-                          child: Text('Dismiss'));
-                    }),
-                      subtitle: const Text("TIME IN"),
-                      background: ColorConstants.secondaryThemeColor,
-                      duration: const Duration(seconds: 2),
-                    )
-                  ),
-                  child: Text("Title: "+(controller.messageTitle))),
-                Text("Data: "+(controller.messageBody)),
-              ],
-            ),
-          ))),*/
-         // Text("Token: "+(_homeController.sharedPreferences.getString("Token")??"")),
-          _imageSlider(context),
-           SizedBox(height: _h*3,),
-          _menuContent(context)
+        children: [ 
+           UserInfo(),           
+          _dimension.isPortrait(context)?   _homePortraitContent(context):_homeLandscapeContent(context)
         ],
       )),
       bottomNavigationBar: Theme(
@@ -125,6 +73,40 @@ class HomePage extends StatelessWidget {
         ),
        drawer:DrawerMenu() ,
     );
+  }
+
+  Widget _homePortraitContent(BuildContext context) {
+    var _h = _dimension.getSafeBlockSizeVertical(context);
+    return Column(
+         
+          children: [
+            _imageSlider(context),
+             SizedBox(height: _h*3,),
+            _menuContent(context),
+          ],
+        );
+  }
+  Widget _homeLandscapeContent(BuildContext context) {
+    var _w = _dimension.getSafeBlockSizeHorizontal(context);
+    return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: _w*49,
+              child:   Column(
+                children: [                 
+                  _imageSlider(context),
+                ],
+              ),
+            ),          
+             SizedBox(width: _w*2,),
+              SizedBox(
+              width: _w*49,
+              child:   _menuContentPortrait(context),
+            ),    
+           
+          ],
+        );
   }
    Widget _menuContent(BuildContext context) {
     return SingleChildScrollView(
@@ -151,16 +133,39 @@ class HomePage extends StatelessWidget {
     );
    
    }
+  Widget _menuContentPortrait(BuildContext context) {
+     var _w = _dimension.getSafeBlockSizeHorizontal(context);
+     var _h = _dimension.getSafeBlockSizeVertical(context);
+    return SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child:  Wrap(
+            direction: Axis.horizontal,
+           // spacing: _w,
+            //runSpacing: _h,
+            children: [
+               _menuItemContent(context,"Attendance",const Icon(Icons.access_alarm_sharp,color: Colors.white),const Color.fromARGB(255, 43, 150, 114),const Color.fromARGB(255, 51, 83, 132),()=> RouteHandler.redirectToAttendance()),
+               _menuItemContent(context,"Homework",const Icon(Icons.home_work_outlined,color: Colors.white),const Color.fromARGB(255, 124, 163, 159),const Color.fromARGB(255, 57, 61, 83),()=>RouteHandler.redirectToHomework()),
+              
+               _menuItemContent(context,"Notices",const Icon(Icons.notifications_active_outlined,color: Colors.white,),Colors.orangeAccent,Colors.brown,()=>RouteHandler.redirectToNotices()),
+               _menuItemContent(context,"Payment",const Icon(Icons.payments_outlined,color: Colors.white),const Color.fromARGB(255, 233, 180, 139),const Color.fromARGB(255, 97, 10, 11),()=>RouteHandler.redirectToPayment())
+               
+            ],
+          )
+    );
+   
+   }
 
   Widget _menuItemContent(BuildContext context,String text,Icon icon,Color color1,Color color2,Function onclick) {
      var _w = _dimension.getSafeBlockSizeHorizontal(context);
      var _h = _dimension.getSafeBlockSizeVertical(context);
+     var _isPortrait = _dimension.isPortrait(context);
      var _subTitle = _dimension.getFontSubTitle(context);
+     var _normalFont = _dimension.getFontNormal(context);
     return  GestureDetector(
           onTap: () =>onclick() ,
           child:   Container(     
-                    width: _w* 92/2,
-                    height: 75,
+                    width: _isPortrait ? _w*92/2: _w*38/2 ,
+                    height: 60,
                     margin: EdgeInsets.symmetric(vertical:_h*2,horizontal: _w*2 ),
                     decoration:  BoxDecoration(           
                                 gradient: LinearGradient(
@@ -189,10 +194,10 @@ class HomePage extends StatelessWidget {
                     child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              SizedBox(width: _w*3),
+                              SizedBox(width: _w*2),
                               icon,
-                              SizedBox(width: _w*4),
-                              Text(text,style:  AppTextStyle.primaryLightBold(size: _subTitle))
+                              SizedBox(width: _w*2),
+                              Text(text,style:  AppTextStyle.primaryLightBold(size: _isPortrait ? _subTitle:_subTitle*0.75))
                             ],
                           ),
           )
@@ -204,7 +209,7 @@ class HomePage extends StatelessWidget {
     var _h = _dimension.getSafeBlockSizeVertical(context);
       return GetBuilder<HomeController>(builder: ((controller) => 
         SizedBox(                  
-                    height: _h*30,
+                    height: _h*35,
                      child: 
                       PageView.builder(
                         itemCount:_homeController.sliderImages.length,

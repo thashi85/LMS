@@ -89,8 +89,7 @@ class NotificationController extends GetxController {
     FirebaseMessaging.onBackgroundMessage(NotificationController.firebaseMessagingBackgroundHandler);
   }
   static void showNotification(String title,String body,DateTime dt,int duration){
-    showSimpleNotification( Text(body +' '+DateFormat('hh:mm: a on yyyy MMM dd').format(dt),
-                              style: AppTextStyle.primaryLightMedium( size: 16)),
+    showSimpleNotification( Text(body, style: AppTextStyle.primaryLightMedium( size: 16)),
                       leading: Container(
                                 width: 40.0,
                                 height: 40.0,
