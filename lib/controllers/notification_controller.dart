@@ -130,7 +130,8 @@ class NotificationController extends GetxController {
   static Future firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     debugPrint("Handling a background message: ${message.messageId}");
      var  _notificationInfo=message.notification;
-        var _ctrl=Get.find<NotificationController>();
+
+        /*var _ctrl=Get.find<NotificationController>();
          _ctrl.messageTitle= _notificationInfo?.title??"";
          _ctrl.messageBody= _notificationInfo?.body??"";
           if(_notificationInfo!=null){
@@ -142,7 +143,7 @@ class NotificationController extends GetxController {
               _notificationInfo.body??"",
                  message.data['time']!=null ? DateTime.parse(message.data['time'].toString()): DateTime.now(),
               message.data['message_duration']!=null? (int.parse(message.data['message_duration'].toString())): 2);
-        }
+        }*/
          
          /*showSimpleNotification(
           Text(_notificationInfo!.title!),
@@ -167,7 +168,7 @@ class NotificationController extends GetxController {
           background: Colors.cyan.shade700,
           duration: const Duration(seconds: 2),
         );*/
-         _ctrl.update();
+         //_ctrl.update();
   }
   // For handling notification when the app is in terminated state
   checkForInitialMessage() async {
@@ -182,5 +183,7 @@ class NotificationController extends GetxController {
          
     }
   }
+
+  
 
 }
