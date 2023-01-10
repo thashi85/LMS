@@ -13,6 +13,8 @@ class SharedComponentUI {
         appDimensionService.getSafeBlockSizeHorizontal(context); */
     var _verticalBlockSize =
         appDimensionService.getSafeBlockSizeVertical(context);
+    var _isWideDevice =
+        appDimensionService.isWideDevice(context);
     var _fontTitle = appDimensionService.getFontTitle(context);
 
     return SafeArea(
@@ -25,7 +27,7 @@ class SharedComponentUI {
             children: [
               Container(
                   padding: EdgeInsets.only(
-                      top: _verticalBlockSize * 5, bottom: _verticalBlockSize),
+                      top: _verticalBlockSize * 4, bottom: _verticalBlockSize),
                   height: _verticalBlockSize * 30,
                   width: double.infinity,
                   decoration: const BoxDecoration(
@@ -43,12 +45,24 @@ class SharedComponentUI {
                             image: AssetImage("assets/images/logo-white-1.png"),
                             fit: BoxFit.fitHeight,
                           ))),
-                      Text("St.Joseph International",
-                          style:
-                              AppTextStyle.secondaryDarkBold(size: _fontTitle)),
-                      Text("College",
-                          style:
-                              AppTextStyle.secondaryDarkBold(size: _fontTitle))
+
+                      _isWideDevice ? 
+                      ( Text("St.Joseph International College",
+                            style:
+                                AppTextStyle.secondaryDarkBold(size: _fontTitle))) :
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                        Text("St.Joseph International",
+                            style:
+                                AppTextStyle.secondaryDarkBold(size: _fontTitle)),
+                        Text("College",
+                            style:
+                                AppTextStyle.secondaryDarkBold(size: _fontTitle))
+                        ],
+                      )
+                      
                     ],
                   )),
               Expanded(

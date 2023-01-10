@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
       body: SharedComponentUI. calenderTopLayoutUI(context, _dimension, Column(
         children: [ 
            UserInfo(),           
-          _dimension.isPortrait(context)?   _homePortraitContent(context):_homeLandscapeContent(context)
+          !_dimension.isWideDevice(context)?   _homePortraitContent(context):_homeLandscapeContent(context)
         ],
       )),
       bottomNavigationBar: Theme(
@@ -138,17 +138,22 @@ class HomePage extends StatelessWidget {
      var _h = _dimension.getSafeBlockSizeVertical(context);
     return SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          child:  Wrap(
-            direction: Axis.horizontal,
-           // spacing: _w,
-            //runSpacing: _h,
+          child:  Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-               _menuItemContent(context,"Attendance",const Icon(Icons.access_alarm_sharp,color: Colors.white),const Color.fromARGB(255, 43, 150, 114),const Color.fromARGB(255, 51, 83, 132),()=> RouteHandler.redirectToAttendance()),
-               _menuItemContent(context,"Homework",const Icon(Icons.home_work_outlined,color: Colors.white),const Color.fromARGB(255, 124, 163, 159),const Color.fromARGB(255, 57, 61, 83),()=>RouteHandler.redirectToHomework()),
-              
-               _menuItemContent(context,"Notices",const Icon(Icons.notifications_active_outlined,color: Colors.white,),Colors.orangeAccent,Colors.brown,()=>RouteHandler.redirectToNotices()),
-               _menuItemContent(context,"Payment",const Icon(Icons.payments_outlined,color: Colors.white),const Color.fromARGB(255, 233, 180, 139),const Color.fromARGB(255, 97, 10, 11),()=>RouteHandler.redirectToPayment())
-               
+              Wrap(
+                direction: Axis.horizontal,
+                spacing: _w,
+                //runSpacing: _h,
+                children: [
+                   _menuItemContent(context,"Attendance",const Icon(Icons.access_alarm_sharp,color: Colors.white),const Color.fromARGB(255, 43, 150, 114),const Color.fromARGB(255, 51, 83, 132),()=> RouteHandler.redirectToAttendance()),
+                   _menuItemContent(context,"Homework",const Icon(Icons.home_work_outlined,color: Colors.white),const Color.fromARGB(255, 124, 163, 159),const Color.fromARGB(255, 57, 61, 83),()=>RouteHandler.redirectToHomework()),
+                  
+                   _menuItemContent(context,"Notices",const Icon(Icons.notifications_active_outlined,color: Colors.white,),Colors.orangeAccent,Colors.brown,()=>RouteHandler.redirectToNotices()),
+                   _menuItemContent(context,"Payment",const Icon(Icons.payments_outlined,color: Colors.white),const Color.fromARGB(255, 233, 180, 139),const Color.fromARGB(255, 97, 10, 11),()=>RouteHandler.redirectToPayment())
+                   
+                ],
+              ),
             ],
           )
     );
@@ -158,13 +163,14 @@ class HomePage extends StatelessWidget {
   Widget _menuItemContent(BuildContext context,String text,Icon icon,Color color1,Color color2,Function onclick) {
      var _w = _dimension.getSafeBlockSizeHorizontal(context);
      var _h = _dimension.getSafeBlockSizeVertical(context);
-     var _isPortrait = _dimension.isPortrait(context);
+     var _isWideDevice = _dimension.isWideDevice(context);
      var _subTitle = _dimension.getFontSubTitle(context);
-     var _normalFont = _dimension.getFontNormal(context);
+   //  var _normalFont = _dimension.getFontNormal(context);
+     var _buttonwidth=!_isWideDevice ? _w*92/2: (_w*38/2) ;
     return  GestureDetector(
           onTap: () =>onclick() ,
           child:   Container(     
-                    width: _isPortrait ? _w*92/2: _w*38/2 ,
+                    width:_buttonwidth<165 ? 165:_buttonwidth,
                     height: 60,
                     margin: EdgeInsets.symmetric(vertical:_h*2,horizontal: _w*2 ),
                     decoration:  BoxDecoration(           
@@ -197,7 +203,7 @@ class HomePage extends StatelessWidget {
                               SizedBox(width: _w*2),
                               icon,
                               SizedBox(width: _w*2),
-                              Text(text,style:  AppTextStyle.primaryLightBold(size: _isPortrait ? _subTitle:_subTitle*0.75))
+                              Text(text,style:  AppTextStyle.primaryLightBold(size: _isWideDevice ? _subTitle:_subTitle*0.75))
                             ],
                           ),
           )

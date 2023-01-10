@@ -34,8 +34,9 @@ class StudentSlider extends StatelessWidget {
 
    Widget _studentInfoSection(BuildContext context){
   var _h = _dimension.getSafeBlockSizeVertical(context);
+  var _sliderHeight= _h*15;
       return SizedBox(                  
-                    height: _h*15,
+                    height:_sliderHeight<60 ? 60 :_sliderHeight,
                      child: 
                       PageView.builder(
                         itemCount:(_authController.loggedInUser as Parent).students.length,

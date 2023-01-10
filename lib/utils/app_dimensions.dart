@@ -59,16 +59,22 @@ class AppDimensions extends GetxController {
   bool isPortrait(BuildContext context) {
     return getOrientation(context) == Orientation.portrait;
   }
+ bool isWideDevice(BuildContext context) {
+    var _mediaQueryData = MediaQuery.of(context);
 
+    var screenWidth = _mediaQueryData.size.width;
+    var screenHeight = _mediaQueryData.size.height;
+    return screenWidth>screenHeight;
+  }
   double getFontTitle(BuildContext context) {
    
     switch (getDeviceSize(context)) {
       case DeviceSize.small:
-        return 24;
+        return 20;
       case DeviceSize.medium:
-        return 28;
+        return 24;
       default:
-        return 32;
+        return 28;
     }
   }
 
@@ -88,11 +94,11 @@ class AppDimensions extends GetxController {
   
     switch (getDeviceSize(context)) {
       case DeviceSize.small:
-        return 14;
+        return 12;
       case DeviceSize.medium:
-        return 20;
+        return 16;
       default:
-        return 24;
+        return 20;
     }
   }
 

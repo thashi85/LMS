@@ -48,6 +48,7 @@ class LoginPage extends StatelessWidget {
                       //direction: Axis.vertical,
                       children: [
                         Row(
+                         // direction:     Axis.horizontal,                     
                           children: [
                              for (var i in _options)
                                 Flexible(
@@ -99,7 +100,7 @@ class LoginPage extends StatelessWidget {
                                     children: [
                                       Container(
                                         width: _w * 70,
-                                        height: _h* 10,                                       
+                                        height:( _h* 10 < 50 )? 50: _h* 10,                                       
                                         padding: EdgeInsets.all(AppDimensions.safeBlockMinUnit*3),
                                         child: CustomButton(
                                             text: "Login",
