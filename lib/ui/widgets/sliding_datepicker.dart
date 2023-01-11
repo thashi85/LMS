@@ -50,7 +50,7 @@ class SlidingDatePicker extends StatelessWidget {
               DatePicker(
                 DateUtility.firstDayOfMonth(int.parse(_studentController.selectedYear!), _studentController.selectedMonth!+1),
                 width:(_w*100)/7,
-                height:(_h*10),
+                //height:(_h*10),
                 daysCount: DateUtility.lastDayOfMonth(int.parse(_studentController.selectedYear!), _studentController.selectedMonth!+1),
                 selectedTextColor: ColorConstants.primaryLightTextColor,
                 selectionColor: ColorConstants.primaryThemeColor,   
