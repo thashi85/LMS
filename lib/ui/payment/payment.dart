@@ -62,7 +62,12 @@ class PaymentPage extends StatelessWidget {
                  children: [           
                    _paymentSummaryHeader(context),       
                   
-                    GetBuilder<StudentController>(
+                   Column(
+                mainAxisSize: MainAxisSize.min,
+                 mainAxisAlignment: MainAxisAlignment.start,
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [ 
+                     GetBuilder<StudentController>(
                               builder: (controller) => SlidingDatePicker(showDateSelection: false,onDateChange: dateChange)),                 
 
                      Padding(
@@ -74,6 +79,9 @@ class PaymentPage extends StatelessWidget {
                         id: "paymentHistory",
                         builder:(controller)=> _studentPaymentSection(context)
                       )
+
+                   ])
+                   
                  
                  ],
                ),
@@ -94,9 +102,66 @@ class PaymentPage extends StatelessWidget {
      var _h = _dimension.getSafeBlockSizeVertical(context);
     var _w = _dimension.getSafeBlockSizeHorizontal(context);
     return Container(
-                   height:_h*35 ,
-                   color: ColorConstants.secondaryThemeColor,
-                   child: Stack(                     
+                  // height:_h*35 ,
+                   color: ColorConstants.primaryThemeColor,
+                   child:
+                   Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      UserInfo(),
+                   
+                      Container(
+                            //height: _h*20,
+                            margin: EdgeInsets.symmetric(horizontal: _w*5),
+                            decoration: BoxDecoration(
+                              color: ColorConstants.whiteBackgroundColor,
+                              borderRadius: BorderRadius.circular(AppDimensions.boarderRadius)
+                            ),
+                            child:  Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Expanded(
+                                   child:Container(   
+                                    
+                                      margin: EdgeInsets.all(AppDimensions.safeBlockMinUnit*5),                                    
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10), 
+                                        // color: ColorConstants.whiteBackgroundColor,                                        
+                                      ),
+                                      child: _dueAmountContent(context),
+                                    ),
+                                  ),
+                                   
+                                  Container(
+                                    height: 50,
+                                    child: const  VerticalDivider(
+                                        width: 20,
+                                        thickness: 2,
+                                        //indent: 10,
+                                        //endIndent: 10,
+                                        color: ColorConstants.lightAshBackgroundColor,
+                                      ),
+                                  ),
+                                  
+                                  Expanded(
+                                    child: 
+                                    Container( width: 100,
+                                       margin: EdgeInsets.all(AppDimensions.safeBlockMinUnit*5),    
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                       //color: ColorConstants.whiteBackgroundColor,
+                                      ),
+                                      child:  _dueDateContent(context),
+                                    ),
+                                  ),
+                                ]),
+                           ),
+                           SizedBox(
+                            height: _h*3,
+                           )
+                    ],
+                   )
+                   /* Stack(                     
                       children: [
                          UserInfo(),
                          Positioned(
@@ -142,7 +207,7 @@ class PaymentPage extends StatelessWidget {
                            ),
                          )
                       ],
-                   ),
+                   ),*/
                  );
   }
 
