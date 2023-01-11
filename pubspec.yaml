@@ -51,7 +51,7 @@ dependencies:
   overlay_support: ^1.2.1
   cloud_firestore_web: ^3.2.1
   firebase_core: ^2.4.1
-  flutter_local_notifications: ^5.0.0
+
 
 dev_dependencies:
   flutter_test:

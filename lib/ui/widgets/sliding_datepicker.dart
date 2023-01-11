@@ -36,10 +36,10 @@ class SlidingDatePicker extends StatelessWidget {
       children: [
          Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
               _yearSelectionContent(_w, context),
-              Expanded(child: MonthMenu(width:  _w*73,selectedIndex:_studentController.selectedMonth?? DateTime.now().month-1,onDateChange: onDateChange))
+              Expanded(child: MonthMenu(width:  _w*73,height: 32,selectedIndex:_studentController.selectedMonth?? DateTime.now().month-1,onDateChange: onDateChange))
               ]),
             
             Visibility(
@@ -79,9 +79,9 @@ class SlidingDatePicker extends StatelessWidget {
   
   Container _yearSelectionContent(double _w, BuildContext context) {
     return Container(
-                    width: _w*16,  
+                    width: _w*16,
                    // margin: EdgeInsets.only(top: 0),
-                    padding: EdgeInsets.only(left: _w,bottom:AppDimensions.safeBlockMinUnit*3),
+                    padding: EdgeInsets.only(left: _w,bottom:AppDimensions.safeBlockMinUnit*3,  top: AppDimensions.safeBlockMinUnit*3),
                     child: DropdownButton<String>(
                           focusColor:Colors.white,
                           value:(_studentController.selectedYear??_currentYear).toString(),

@@ -8,6 +8,7 @@ import '../../utils/app_dimensions.dart';
 
 class MonthMenu extends StatelessWidget {
   final double width;
+  final double height;
   final Function? onDateChange;
   int? selectedIndex;
 
@@ -19,7 +20,7 @@ class MonthMenu extends StatelessWidget {
   ];
   // By default our first item will be selected
   
-  MonthMenu({Key? key,required this.width, this.selectedIndex,this.onDateChange}) : super(key: key){     
+  MonthMenu({Key? key,required this.width,required this.height, this.selectedIndex,this.onDateChange}) : super(key: key){     
        // selectedIndex=selectedIndex ?? DateTime.now().month-1;
        if(selectedIndex!=null){
         _scrollController=ScrollController(initialScrollOffset:(width/6)*selectedIndex!);
@@ -32,11 +33,11 @@ class MonthMenu extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    
+   // var _h = _dimension.getSafeBlockSizeVertical(context);
     return Padding(
       padding: EdgeInsets.symmetric(vertical: AppDimensions.safeBlockMinUnit*2),
       child: SizedBox(
-        height: 30,
+        height:height,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           controller:_scrollController ,
