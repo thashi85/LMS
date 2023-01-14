@@ -26,7 +26,7 @@ class LoginPage extends StatelessWidget {
     var _h = _dimension.getSafeBlockSizeVertical(context);
     var _w = _dimension.getSafeBlockSizeHorizontal(context);
     var _normalFont = _dimension.getFontNormal(context);
-
+    var _radioWidth= _w*40/3;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
       ),
       body: SharedComponentUI. mainLogoLayoutUI(context, _dimension,  
       Container(
-        
+       
         padding: EdgeInsets.all(AppDimensions.safeBlockMinUnit*5),
         margin: EdgeInsets.all(AppDimensions.safeBlockMinUnit*5),
         decoration: BoxDecoration(
@@ -47,13 +47,12 @@ class LoginPage extends StatelessWidget {
                         Column(
                       //direction: Axis.vertical,
                       children: [
-                        Row(
-                         // direction:     Axis.horizontal,                     
+                        Wrap(
+                          direction:     Axis.horizontal,                     
                           children: [
                              for (var i in _options)
-                                Flexible(
-                                  flex: 1,
-                                  child: Row(
+                               Row(
+                                mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Radio(
                                           value: i["id"],
@@ -66,7 +65,9 @@ class LoginPage extends StatelessWidget {
                                         // build(context);
                                         
                                           }),
-                                      Expanded(
+                                      Container(
+                                        width: _radioWidth<50?50:_radioWidth,
+                                       
                                         child: GestureDetector(
                                           onTap: (){
                                             _authController.setLoginOption( i["id"]);
@@ -76,7 +77,7 @@ class LoginPage extends StatelessWidget {
                                                                               ),
                                         ))
                                     ],
-                                  ),
+                                  
                                 )
                                  
                             ],

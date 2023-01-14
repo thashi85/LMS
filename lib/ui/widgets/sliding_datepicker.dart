@@ -39,7 +39,7 @@ class SlidingDatePicker extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
               _yearSelectionContent(_w, context),
-              Expanded(child: MonthMenu(width:  _w*73,height: 32,selectedIndex:_studentController.selectedMonth?? DateTime.now().month-1,onDateChange: onDateChange))
+              Expanded(child: MonthMenu(width:  _w*73,height: 35,selectedIndex:_studentController.selectedMonth?? DateTime.now().month-1,onDateChange: onDateChange))
               ]),
             
             Visibility(
@@ -49,7 +49,7 @@ class SlidingDatePicker extends StatelessWidget {
               const CircularProgressIndicator(color: ColorConstants.secondaryThemeColor):
               DatePicker(
                 DateUtility.firstDayOfMonth(int.parse(_studentController.selectedYear!), _studentController.selectedMonth!+1),
-                width:(_w*100)/7,
+                width:(_w*99)/7,
                 //height:(_h*10),
                 daysCount: DateUtility.lastDayOfMonth(int.parse(_studentController.selectedYear!), _studentController.selectedMonth!+1),
                 selectedTextColor: ColorConstants.primaryLightTextColor,

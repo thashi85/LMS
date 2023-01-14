@@ -166,7 +166,7 @@ class HomePage extends StatelessWidget {
      var _isWideDevice = _dimension.isWideDevice(context);
      var _subTitle = _dimension.getFontSubTitle(context);
    //  var _normalFont = _dimension.getFontNormal(context);
-     var _buttonwidth=!_isWideDevice ? _w*92/2: (_w*38/2) ;
+     var _buttonwidth=!_isWideDevice ? _w*92/2: (_w*48/2) ;
     return  GestureDetector(
           onTap: () =>onclick() ,
           child:   Container(     

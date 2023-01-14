@@ -26,19 +26,19 @@ Future<void> init() async {
   Get.put((AppDimensions()));
   // Obtain shared preferences.
   final prefs = await SharedPreferences.getInstance();
-  Get.lazyPut(() => ApiClient(appBaseUrl: AppConstant.baseUrl,timeoutD: AppConstant.apiTimeout,sharedPreferences: prefs));
+  Get.lazyPut(() => ApiClient(appBaseUrl: AppConstant.baseUrl,timeoutD: AppConstant.apiTimeout,sharedPreferences: prefs),fenix: true);
   //repos 
-  Get.lazyPut(() => UserRepo(apiClient: Get.find()));
-  Get.lazyPut(() => StudentRepo(apiClient: Get.find()));
-  Get.lazyPut(() => CommonRepo(apiClient: Get.find()));
-  Get.lazyPut(() => PaymentRepo(apiClient: Get.find()));
+  Get.lazyPut(() => UserRepo(apiClient: Get.find()),fenix: true);
+  Get.lazyPut(() => StudentRepo(apiClient: Get.find()),fenix: true);
+  Get.lazyPut(() => CommonRepo(apiClient: Get.find()),fenix: true);
+  Get.lazyPut(() => PaymentRepo(apiClient: Get.find()),fenix: true);
 
   //Controllers
-  Get.lazyPut(()=>AuthController());
-  Get.lazyPut(()=>StudentController());
-  Get.lazyPut(()=>HomeController());
-  Get.lazyPut(() => PaymentController());
-  Get.lazyPut(() => NotificationController());
+  Get.lazyPut(()=>AuthController(),fenix: true);
+  Get.lazyPut(()=>StudentController(),fenix: true);
+  Get.lazyPut(()=>HomeController(),fenix: true);
+  Get.lazyPut(() => PaymentController(),fenix: true);
+  Get.lazyPut(() => NotificationController(),fenix: true);
 
   //Services
   // Get.lazyPut(() => ThemeService());
