@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
           children: [
             _imageSlider(context),
              SizedBox(height: _h*3,),
-            _menuContent(context),
+            _menuContentPortrait(context),
           ],
         );
   }
@@ -135,7 +135,7 @@ class HomePage extends StatelessWidget {
    }
   Widget _menuContentPortrait(BuildContext context) {
      var _w = _dimension.getSafeBlockSizeHorizontal(context);
-     var _h = _dimension.getSafeBlockSizeVertical(context);
+     //var _h = _dimension.getSafeBlockSizeVertical(context);
     return SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child:  Column(
@@ -170,7 +170,7 @@ class HomePage extends StatelessWidget {
     return  GestureDetector(
           onTap: () =>onclick() ,
           child:   Container(     
-                    width:_buttonwidth<165 ? 165:_buttonwidth,
+                    width:_buttonwidth<150 ? 150:(((_w*100)<=412) ?150:_buttonwidth),
                     height: 60,
                     margin: EdgeInsets.symmetric(vertical:_h*2,horizontal: _w*2 ),
                     decoration:  BoxDecoration(           

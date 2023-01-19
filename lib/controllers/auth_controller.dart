@@ -37,7 +37,22 @@ class AuthController extends GetxController {
   }
 
   setInitialScreen() async {
-    RouteHandler.redirectToHome();
+    var _res=await _userRepo.getUser();  
+    if(_res!=null && _res.data!=null){
+          loggedInUser = _res.data as Parent;         
+          if (loggedInUser is Parent) {
+            studentIndex = 0;
+           
+          }
+           if(_notificationController.deviceToken.isNotEmpty){
+            _notificationController.getToken(loggedInUser!);
+          }else{
+            _notificationController.registerNotification(loggedInUser!);
+          }          
+         
+         RouteHandler.redirectToHome();
+      }
+    //RouteHandler.redirectToHome();
   }
 
   User? getUser() {

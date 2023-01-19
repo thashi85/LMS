@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -94,13 +95,14 @@ class StudentSummary extends StatelessWidget {
                                       SizedBox(height: _h*2),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisSize: MainAxisSize.max,
                                         children: [
                                           SizedBox(
                                             width: _w*30,
                                             child:  Text((_student).studentRef,style:  AppTextStyle.primaryLightRegular(size: _subNormal))                                
                                           ),
-                                          SizedBox(
-                                            width: _w*30,                                                           
+                                          SizedBox(                                           
+                                            width: _w*25,                                                           
                                             child: Column(
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               crossAxisAlignment: CrossAxisAlignment.end,

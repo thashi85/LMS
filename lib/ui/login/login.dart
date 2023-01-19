@@ -146,7 +146,7 @@ class LoginPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: _w * 75,
+          width: _w * 66,
           margin: EdgeInsets.only(top: 30, left: _w * 2, right: _w * 2),
           // padding: EdgeInsets.all(Dimensions.safeBlockHorizontal*2),
           decoration: BoxDecoration(

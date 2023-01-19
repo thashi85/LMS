@@ -1,3 +1,6 @@
+
+//import 'package:device_preview/device_preview.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -11,7 +14,13 @@ Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
    await init().then((value) => {runApp(const LMSApp())});
 
-  runApp(const LMSApp());
+runApp(const LMSApp());
+  /*runApp(
+  DevicePreview(
+    enabled: !kReleaseMode,
+    builder: (context) => LMSApp(), // Wrap your app
+  ),
+);*/
 }
 
 class LMSApp extends StatelessWidget {
