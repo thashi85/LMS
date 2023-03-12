@@ -1,4 +1,3 @@
-
 //import 'package:device_preview/device_preview.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +10,10 @@ import 'utils/routes.dart';
 import 'utils/utils.dart';
 
 Future<void> main() async {
-   WidgetsFlutterBinding.ensureInitialized();
-   await init().then((value) => {runApp(const LMSApp())});
+  WidgetsFlutterBinding.ensureInitialized();
+  await init().then((value) => {runApp(const LMSApp())});
 
-runApp(const LMSApp());
+  runApp(const LMSApp());
   /*runApp(
   DevicePreview(
     enabled: !kReleaseMode,
@@ -48,13 +47,10 @@ class LMSApp extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
-          primarySwatch:
-              Utils.generateMaterialColorFromColor(ColorConstants.primaryThemeColor),
+          primarySwatch: Utils.generateMaterialColorFromColor(
+              ColorConstants.primaryThemeColor),
         ),
-        
       ),
     );
   }
 }
-
-
